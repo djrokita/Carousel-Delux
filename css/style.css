@@ -1,0 +1,65 @@
+body {
+	background: #ccc;
+}
+
+header {
+	text-align: center;
+	letter-spacing: 2px;
+	color: white;
+	text-shadow: 2px 2px 2px black;
+}
+
+.switch {
+	height: 100%;
+	width: 50px;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: absolute;
+	text-align: center;
+	z-index: 2;
+}
+
+.switch i {
+	font-size: 52px;
+	color: #ddd;
+	margin-top: 150px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.next {
+	right: 0;
+}
+
+#carousel {
+	width: 400px;
+	height: 300px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	/*overflow: hidden;*/
+	border-width: 5px;
+	border-style: ridge;
+	position: relative;
+}
+
+.gallery {
+	margin: 0;
+	position: relative;
+	left: -400px;
+	padding: 0;
+	list-style: none;
+	width: 2000px;
+}
+
+.photo {
+	display: block;
+	float: left;
+	width: 400px;
+	height: 300px;
+}
+
+.photo img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
