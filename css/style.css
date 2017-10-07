@@ -16,6 +16,8 @@ header {
 	position: absolute;
 	text-align: center;
 	z-index: 2;
+	opacity: 0;
+	transition: opacity .5s;
 }
 
 .switch i {
@@ -36,10 +38,14 @@ header {
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
-	/*overflow: hidden;*/
+	overflow: hidden;
 	border-width: 5px;
 	border-style: ridge;
 	position: relative;
+}
+
+#carousel:hover .switch {
+	opacity: 1;
 }
 
 .gallery {
