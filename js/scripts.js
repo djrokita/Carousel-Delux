@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   var btnNext = $('.fa-angle-right');
   var btnPrev = $('.fa-angle-left');
-  var time = setInterval(changeSlide, 2000);
+  var indexPhoto = $('.gallery').find('li');
+  var time = setInterval(changeSlide, 5000);
   var indexCircle = $('.controls').find('i.fired');
   var licz = 0;
   var pickPhotoCircle = $('<i class="fa fa-circle" aria-hidden="true"></i>');
@@ -12,7 +13,7 @@ $(document).ready(function() {
 
   function changeSlide() {
     $('.gallery').animate({marginLeft: '-400px'}, 500, moveFirstSlide);
-	changeCircle();
+  changeCircle();
   }
 
   function moveFirstSlide() {
@@ -32,46 +33,49 @@ $(document).ready(function() {
   $(btnNext).click(function() {
     $('.gallery').animate({marginLeft: '-400px'}, 500, moveFirstSlide);    
     clearInterval(time);
-    time = setInterval(changeSlide, 2000);
+    time = setInterval(changeSlide, 5000);
     changeCircle();
   });
 
   $(btnPrev).click(function() {
     $('.gallery').animate({marginLeft: '400px'}, 500, addLastSlide);    
     clearInterval(time);
-    time = setInterval(changeSlide, 2000);
+    time = setInterval(changeSlide, 5000);
     changeCircleBack();
   });
 
   function changeCircle() {
-  	var indexPhoto = $('.gallery').find('li');
-	var displayPhoto = indexPhoto.eq(1);
- 
-	licz++;
-   	if (licz == indexPhoto.length) licz = 0;
-   	indexCircle.each(function() {
-   		$(this).css('display', 'none');
-   	});
+    licz++;
+    if (licz == indexPhoto.length) licz = 0;
+    indexCircle.each(function() {
+      $(this).css('display', 'none');
+    });
 
-	indexCircle.eq(licz).css('display', 'inline-block');
+  indexCircle.eq(licz).css('display', 'inline-block');
 
-	console.log(licz);
+  console.log(licz);
   }
 
   function changeCircleBack() {
-  	var indexPhoto = $('.gallery').find('li');
-	var displayPhoto = indexPhoto.eq(1);
-    var idPhoto = displayPhoto.attr('id');
-    console.log(idPhoto);
-	licz--;
-   	if (licz < 0) licz = indexPhoto.length - 1;
-   	indexCircle.each(function() {
-   		$(this).css('display', 'none');
-   	});
+    licz--;
+    if (licz < 0) licz = indexPhoto.length - 1;
+    indexCircle.each(function() {
+      $(this).css('display', 'none');
+    });
 
-	indexCircle.eq(licz).css('display', 'inline-block');
+  indexCircle.eq(licz).css('display', 'inline-block');
 
-	console.log(licz);
+  console.log(licz);
   }
+  
+  function currentPhoto() {
+	 var displayPhoto = indexPhoto.eq(1);
 
+  }
 });
+
+
+/*Potrzebne funkcje:
+- do zmiany koloru kółka
+- do zmiany slajdu
+- do uaktualnienia licznika*/

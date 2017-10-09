@@ -68,13 +68,6 @@ header {
 	height: 300px;
 }
 
-/*.photo:after,
-.photo:before {
-	content: "";
-	display: table;
-	clear: both;
-}*/
-
 .photo img {
 	height: 100%;
 	width: 100%;
@@ -82,15 +75,14 @@ header {
 }
 
 .controls {
-	/*display: block;*/
 	margin-top: 50px;
 }
 
 .controlStyle {
 	display: inline-block;
-	/*color: transparent;*/
 	margin-right: 5px;
 	position: relative;
+	cursor: pointer;
 }
 
 .fired {
