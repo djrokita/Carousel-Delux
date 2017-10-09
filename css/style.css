@@ -1,3 +1,7 @@
+/* {
+	outline: 1px solid red;
+}*/
+
 body {
 	background: #ccc;
 }
@@ -64,8 +68,33 @@ header {
 	height: 300px;
 }
 
+/*.photo:after,
+.photo:before {
+	content: "";
+	display: table;
+	clear: both;
+}*/
+
 .photo img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+
+.controls {
+	/*display: block;*/
+	margin-top: 50px;
+}
+
+.controlStyle {
+	display: inline-block;
+	/*color: transparent;*/
+	margin-right: 5px;
+	position: relative;
+}
+
+.fired {
+	position: absolute;
+	top: 0;
+	display: none;
 }
