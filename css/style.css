@@ -75,7 +75,9 @@ header {
 }
 
 .controls {
-	margin-top: 50px;
+	margin-top: 20px;
+	text-align: center;
+	padding: 0;
 }
 
 .controlStyle {
@@ -87,6 +89,7 @@ header {
 
 .fired {
 	position: absolute;
+	left: 0;
 	top: 0;
 	display: none;
 }
