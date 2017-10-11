@@ -4,8 +4,6 @@ $(document).ready(function() {
   var $btnPrev = $('.fa-angle-left');
   var $indexPhoto = $('.gallery').find('li');
   var $indexCircle = $('.controls').find('i.fired');
-  /*var $pickPhotoCircle = $('<i class="fa fa-circle" aria-hidden="true"></i>');*/
-  /*var $emptyCircle = $('<i class="fa fa-circle-o" aria-hidden="true"></i>');*/
   var $indexPoint = $('.controls').find('li');
   var $gallery = $('.gallery');
   var counter = 1;
@@ -19,7 +17,7 @@ $(document).ready(function() {
   function changeSlide() {
     $gallery.animate({
       marginLeft: '-400px'
- 	}, 500, moveFirstSlide);
+    }, 500, moveFirstSlide);
     changeCircle();
   }
 
@@ -58,67 +56,65 @@ $(document).ready(function() {
   function changeCircle() {
     counter++;
     if (counter > $indexPhoto.length) counter = 1;
+    toEmptyCircle();
+    $indexCircle.eq(counter - 1).css('display', 'inline-block');
+  }
+
+  function toEmptyCircle() {
     $indexCircle.each(function() {
       $(this).css('display', 'none');
     });
-
-    $indexCircle.eq(counter - 1).css('display', 'inline-block');
   }
 
   function changeCircleBack() {
     counter--;
     if (counter == 0) counter = $indexPhoto.length;
-    $indexCircle.each(function() {
-      $(this).css('display', 'none');
-    });
-
+    toEmptyCircle();
     $indexCircle.eq(counter - 1).css('display', 'inline-block');
   }
 
   $indexPoint.each(function() {
-    
     $(this).click(function() {
+      
       $indexCircle.each(function() {
-        
+
         $(this).css('display', 'none');
       });
       $(this).find('i').css('display', 'inline-block');
-      
+
       $getIdPoint = $(this).attr('id');
       moveSlidePoint();
 
       /*console.log('counter wynosi: ' + counter + ' a distPoint wynosi: ' + distPoint);*/
-		      
+
       clearInterval(time);
-	  time = setInterval(changeSlide, myInterval);
-	  counter = $(this).attr('id');
+      time = setInterval(changeSlide, myInterval);
+      counter = $(this).attr('id');
     });
   });
 
-	  function moveSlidePoint() {
-    if (counter < $getIdPoint) 
-    	{
-    		distPoint = ($getIdPoint - counter);
-    		pickGalleryNext(distPoint);
-    	}
-    else 
-		{
- 	   		distPoint = (counter - $getIdPoint);
- 	   		pickGalleryBack(distPoint);
- 	   	}
-  	}
+  function moveSlidePoint() {
+    if (counter < $getIdPoint) {
+      distPoint = ($getIdPoint - counter);
+      pickGalleryNext(distPoint);
+    } 
+    else {
+      distPoint = (counter - $getIdPoint);
+      pickGalleryBack(distPoint);
+    }
+  }
 
-  	function pickGalleryNext(num) {
-		for (var i = 0; i < num; i++) {  		
-  			$gallery.append($gallery.find('li:first'));
-  		};
-  		return $gallery;
-  	}
+  function pickGalleryNext(num) {
+    for (var i = 0; i < num; i++) {
+      $gallery.append($gallery.find('li:first'));
+    }
+    return $gallery;
+  }
 
-  	function pickGalleryBack(num) {
-		for (var i = 0; i < num; i++) {  		
-  			$gallery.prepend($gallery.find('li:last'));
-  		};
-  		return $gallery;
-  	}
+  function pickGalleryBack(num) {
+    for (var i = 0; i < num; i++) {
+      $gallery.prepend($gallery.find('li:last'));
+    }
+    return $gallery;
+  }
 });

@@ -5,19 +5,24 @@
 body {
 	background-color: #ccc;
 	margin: 0;
-	background-image: url('https://images.pexels.com/photos/247569/pexels-photo-247569.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+	position: relative;
 	height: 100vh;
+}
+
+body > img {
+	filter: grayscale(100%);
+	height: 100vh;
+	width: 100%;
+	vertical-align: middle;
+	
 }
 
 header {
 	text-align: center; 	
 	letter-spacing: 2px;
 	color: white;
-	text-shadow: 2px 3px 2px #fff;
-	padding-top: 10%;
+	text-shadow: 3px 3px 10px #fff;
+	/*padding-top: 30%;*/
 }
 
 header h1 {
@@ -27,8 +32,12 @@ header h1 {
 	color: #111;
 }
 
-main {
-	filter: none;
+.container {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	/*height: 100vh;*/
 }
 
 .switch {
@@ -65,6 +74,7 @@ main {
 	border-style: ridge;
 	border-color: #444;
 	position: relative;
+	box-shadow: 10px 10px 15px black;
 }
 
 #carousel:hover .switch {
@@ -91,6 +101,7 @@ main {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+	filter: none !important;
 }
 
 .controls {
