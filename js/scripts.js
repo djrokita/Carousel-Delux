@@ -1,144 +1,124 @@
 $(document).ready(function() {
 
-  var btnNext = $('.fa-angle-right');
-  var btnPrev = $('.fa-angle-left');
-  var indexPhoto = $('.gallery').find('li');
-  var indexCircle = $('.controls').find('i.fired');
-  var licz = 1;
-  var pickPhotoCircle = $('<i class="fa fa-circle" aria-hidden="true"></i>');
-  var emptyCircle = $('<i class="fa fa-circle-o" aria-hidden="true"></i>');
-  var indexPoint = $('.controls').find('li');
+  var $btnNext = $('.fa-angle-right');
+  var $btnPrev = $('.fa-angle-left');
+  var $indexPhoto = $('.gallery').find('li');
+  var $indexCircle = $('.controls').find('i.fired');
+  /*var $pickPhotoCircle = $('<i class="fa fa-circle" aria-hidden="true"></i>');*/
+  /*var $emptyCircle = $('<i class="fa fa-circle-o" aria-hidden="true"></i>');*/
+  var $indexPoint = $('.controls').find('li');
+  var $gallery = $('.gallery');
+  var counter = 1;
+  var myInterval = 3000;
 
-  var time = setInterval(changeSlide, 5000);
-  indexCircle.eq(0).css('display', 'inline-block');
+  var time = setInterval(changeSlide, myInterval);
+  $indexCircle.eq(0).css('display', 'inline-block');
 
-  console.log(licz);
+  console.log(counter);
 
   function changeSlide() {
-    $('.gallery').animate({
+    $gallery.animate({
       marginLeft: '-400px'
-    }, 500, moveFirstSlide);
+ 	}, 500, moveFirstSlide);
     changeCircle();
   }
 
   function moveFirstSlide() {
-    var firstSlide = $('.gallery li:first');
-    var lastSlide = $('.gallery li:last');
-    lastSlide.after(firstSlide);
-    $('.gallery').css('marginLeft', '0');
-    indexPhoto = $('.gallery').find('li');
+    var firstSlide = $gallery.find('li:first');
+    $gallery.append(firstSlide);
+    $gallery.css('marginLeft', '0');
+    $indexPhoto = $gallery.find('li');
   }
 
   function moveLastSlide() {
-    var firstSlide = $('.gallery li:first');
-    var lastSlide = $('.gallery li:last');
-    firstSlide.before(lastSlide);
-    $('.gallery').css('marginLeft', '0');
-    indexPhoto = $('.gallery').find('li');
+    var lastSlide = $gallery.find('li:last');
+    $gallery.prepend(lastSlide);
+    $gallery.css('marginLeft', '0');
+    indexPhoto = $gallery.find('li');
   }
 
-  $(btnNext).click(function() {
-    $('.gallery').animate({
+  $btnNext.click(function() {
+    $gallery.animate({
       marginLeft: '-400px'
     }, 500, moveFirstSlide);
     clearInterval(time);
-    time = setInterval(changeSlide, 5000);
+    time = setInterval(changeSlide, myInterval);
     changeCircle();
   });
 
-  $(btnPrev).click(function() {
-    $('.gallery').animate({
+  $btnPrev.click(function() {
+    $gallery.animate({
       marginLeft: '400px'
     }, 500, moveLastSlide);
     clearInterval(time);
-    time = setInterval(changeSlide, 5000);
+    time = setInterval(changeSlide, myInterval);
     changeCircleBack();
   });
 
   function changeCircle() {
-    licz++;
-    if (licz > indexPhoto.length) licz = 1;
-    indexCircle.each(function() {
+    counter++;
+    if (counter > $indexPhoto.length) counter = 1;
+    $indexCircle.each(function() {
       $(this).css('display', 'none');
     });
 
-    indexCircle.eq(licz - 1).css('display', 'inline-block');
-
-    console.log(licz);
+    $indexCircle.eq(counter - 1).css('display', 'inline-block');
   }
 
   function changeCircleBack() {
-    licz--;
-    if (licz == 0) licz = indexPhoto.length;
-    indexCircle.each(function() {
+    counter--;
+    if (counter == 0) counter = $indexPhoto.length;
+    $indexCircle.each(function() {
       $(this).css('display', 'none');
     });
 
-    indexCircle.eq(licz - 1).css('display', 'inline-block');
-
-    console.log(licz);
+    $indexCircle.eq(counter - 1).css('display', 'inline-block');
   }
 
-  /*function currentPhoto() {
-    var displayPhoto = indexPhoto.eq(1);
-    var idPhoto = displayPhoto.attr('id');
-   console.log(idPhoto);
-
-  }
-  /*currentPhoto();*/
-
-  var getIdPoint = 0;
-  var toMargin = 0;
-
-
-  function changeCircleClick() {
-    indexCircle.each(function() {
-      $(this).css('display', 'none');
-    });
-
-    indexPoint.each(function() {
-      $(this).click(function() {
-        $(this).css('display', 'inline-block');
-      });
-    });
-    console.log(licz);
-  }
-
-  indexPoint.each(function(index) {
+  $indexPoint.each(function() {
+    
     $(this).click(function() {
-      indexCircle.each(function() {
+      $indexCircle.each(function() {
+        
         $(this).css('display', 'none');
       });
       $(this).find('i').css('display', 'inline-block');
+      
+      $getIdPoint = $(this).attr('id');
+      moveSlidePoint();
+
+      /*console.log('counter wynosi: ' + counter + ' a distPoint wynosi: ' + distPoint);*/
+		      
+      clearInterval(time);
+	  time = setInterval(changeSlide, myInterval);
+	  counter = $(this).attr('id');
     });
   });
-  /*toMargin = 0;
-      getIdPoint = indexPoint.eq(index).attr('id'); 
-      console.log(getIdPoint);
-      moveSlidePoint();
-    /*clearInterval(time);*/
-  /*$('.gallery').animate({left: '-' + toMargin + 'px'}, 500);*/
 
-  /*time = setInterval(changeSlide, 5000);
-      changeCircle();
+	  function moveSlidePoint() {
+    if (counter < $getIdPoint) 
+    	{
+    		distPoint = ($getIdPoint - counter);
+    		pickGalleryNext(distPoint);
+    	}
+    else 
+		{
+ 	   		distPoint = (counter - $getIdPoint);
+ 	   		pickGalleryBack(distPoint);
+ 	   	}
+  	}
 
+  	function pickGalleryNext(num) {
+		for (var i = 0; i < num; i++) {  		
+  			$gallery.append($gallery.find('li:first'));
+  		};
+  		return $gallery;
+  	}
 
-      
-  });
-  });*/
-
-  function moveSlidePoint() {
-    if (licz < getIdPoint) toMargin = (getIdPoint - licz) * 400;
-    else toMargin = (licz - getIdPoint) * 400;
-    console.log(toMargin);
-    /*if (getIdPoint == 3) moveFirstSlide();
-    else if (getIdPoint == 1) moveLastSlide();*/
-  }
-
+  	function pickGalleryBack(num) {
+		for (var i = 0; i < num; i++) {  		
+  			$gallery.prepend($gallery.find('li:last'));
+  		};
+  		return $gallery;
+  	}
 });
-
-
-/*Potrzebne funkcje:
-- do zmiany koloru kółka
-- do zmiany slajdu
-- do uaktualnienia licznika*/

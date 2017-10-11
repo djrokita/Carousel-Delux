@@ -3,14 +3,30 @@
 }*/
 
 body {
-	background: #ccc;
+	background-color: #ccc;
+	margin: 0;
+	background-image: url('https://images.pexels.com/photos/247569/pexels-photo-247569.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 header {
-	text-align: center;
+	text-align: center; 	
 	letter-spacing: 2px;
 	color: white;
 	text-shadow: 2px 2px 2px black;
+	padding-top: 40px;
+}
+
+header h1 {
+	margin-top: 0;
+	font-size: 42px;
+	font-family: 'Georgia';
+}
+
+main {
+	filter: none;
 }
 
 .switch {
