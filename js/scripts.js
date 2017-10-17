@@ -95,11 +95,11 @@ $(document).ready(function() {
 
   function moveSlidePoint() {
     if (counter < $getIdPoint) {
-      distPoint = ($getIdPoint - counter);
+      distPoint = $getIdPoint - counter;
       pickGalleryNext(distPoint);
     } 
     else {
-      distPoint = (counter - $getIdPoint);
+      distPoint = counter - $getIdPoint;
       pickGalleryBack(distPoint);
     }
   }
@@ -108,13 +108,11 @@ $(document).ready(function() {
     for (var i = 0; i < num; i++) {
       $gallery.append($gallery.find('li:first'));
     }
-    return $gallery;
   }
 
   function pickGalleryBack(num) {
     for (var i = 0; i < num; i++) {
       $gallery.prepend($gallery.find('li:last'));
     }
-    return $gallery;
   }
 });
